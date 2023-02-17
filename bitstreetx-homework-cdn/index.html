@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 2 Countdown & API</title>
+    <!-- 引入Vue.js和Bootstrap CSS -->
+    <script src="https://v2.vuejs.org/js/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="App" class="container text-center">
+        <!-- 彈出窗口 -->
+        <button @click="popup = !popup" class="btn btn-primary">開始倒數計時</button>
+        <!-- 當popup為true時，顯示popup window -->
+        <div v-show="popup" class="popup-window">
+            <h2>倒數計時</h2>
+            <p>{{ countdown }}</p>
+            <button @click="popup = !popup" class="btn btn-secondary">關閉</button>
+        </div>
+        <!-- 顯示API資料 -->
+        <div class="row">
+            <template v-for="currency of premiumIndex">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">交易對: {{ currency.pair }}</div>
+                        <div class="card-body">
+                            <p>標記價格: {{ currency.markPrice }}</p>
+                            <p>指數價格: {{ currency.indexPrice }}</p>
+                            <p>下次資金費率結算時間:</p>
+                            <p> {{ currency.fundingTime }}</p>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+    <!-- 引入Axios.js -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
